@@ -1,4 +1,4 @@
-package org.keepbang.org.keepbang.type
+package org.keepbang.baseball.type
 
 enum class GameStatus(val gameStatus: String) {
     RESTART("1"),

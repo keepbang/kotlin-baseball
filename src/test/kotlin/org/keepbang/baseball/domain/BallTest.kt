@@ -1,8 +1,7 @@
-package org.keepbang.domain
+package org.keepbang.baseball.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import org.keepbang.org.keepbang.domain.Ball
 
 
 class BallTest : BehaviorSpec({
@@ -12,6 +11,7 @@ class BallTest : BehaviorSpec({
 
         When("리스트로 ball 생성") {
             val actual = Ball(list)
+
             Then("생성자가 생성됨") {
                 actual.numbers shouldBe list
             }

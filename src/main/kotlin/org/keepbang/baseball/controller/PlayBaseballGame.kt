@@ -1,4 +1,4 @@
-package org.keepbang.org.keepbang.baseball
+package org.keepbang.baseball.controller
 
 class PlayBaseballGame(randomPlayerBall: Any) {
 

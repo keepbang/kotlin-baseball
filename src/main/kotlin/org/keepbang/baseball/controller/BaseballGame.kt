@@ -1,7 +1,6 @@
-package org.keepbang.baseball
+package org.keepbang.baseball.controller
 
-import org.keepbang.org.keepbang.type.GameStatus
-
+import org.keepbang.baseball.type.GameStatus
 
 /**
  * 게임 플레이를 위한 컨트롤러
