@@ -2,7 +2,7 @@ package org.keepbang.baseball.utils
 
 import org.keepbang.baseball.domain.Ball
 import org.keepbang.baseball.domain.MAX_RANGE
-import org.keepbang.util.pickNumberInRange
+import org.keepbang.util.Randoms.Companion.pickNumberInRange
 
 class RandomGenerator {
     companion object {

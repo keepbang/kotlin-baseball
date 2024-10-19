@@ -14,7 +14,6 @@ class ValidateUtils {
             if (isDuplicateNumbers(numbers)) {
                 throw IllegalArgumentException("중복된 숫자가 입력되었습니다.")
             }
-
         }
 
         private fun isDuplicateNumbers(numbers: String): Boolean {
