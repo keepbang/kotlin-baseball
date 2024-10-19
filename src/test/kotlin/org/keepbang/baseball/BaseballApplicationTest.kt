@@ -3,7 +3,7 @@ package org.keepbang.baseball
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.keepbang.org.keepbang.baseball.BaseballApplication
+import org.keepbang.org.keepbang.baseball.main
 import org.keepbang.util.Randoms
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.MockedStatic.Verification
@@ -54,6 +54,6 @@ class BaseballApplicationTest : NSTest() {
     }
 
     override fun runMain() {
-        BaseballApplication.main()
+        main()
     }
 }
