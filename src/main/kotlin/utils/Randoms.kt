@@ -20,6 +20,18 @@ val RANDOM: Random = Random()
  * @throws IllegalArgumentException 스택오버플로우가 터질 수 있는 경우, 발생한다. 잘못된 범위가 입력되는 경우, 발생한다.
  */
 class Randoms {
+    fun pickNumberInRange(startInclusive: Int, endInclusive: Int): Int {
+        validateRange(startInclusive, endInclusive)
+        return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1)
+    }
+
+    fun validateRange(startInclusive: Int, endInclusive: Int) {
+        require(endInclusive != Int.MAX_VALUE) { "끝값이 너무 큽니다. (스택 오버플로우 발생이 가능합니다)" }
+
+        require(endInclusive - startInclusive < Int.MAX_VALUE) { "입력값이 너무 큽니다." }
+
+        require(startInclusive <= endInclusive) { "startInclusive가 endInclusive보다 클 수 없습니다." }
+    }
     companion object {
         fun pickNumberInRange(startInclusive: Int, endInclusive: Int): Int {
             validateRange(startInclusive, endInclusive)
