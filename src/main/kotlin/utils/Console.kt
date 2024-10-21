@@ -1,6 +1,5 @@
 package org.keepbang.util
 
-import java.lang.reflect.Field
 import java.util.*
 
 /**
@@ -13,27 +12,7 @@ class Console {
             private set
 
         fun readLine(): String {
-            makeNewScannerIfScannerIsClosed()
             return scanner.nextLine()
-        }
-
-        private fun makeNewScannerIfScannerIsClosed() {
-            if (scannerIsClosed()) {
-                scanner = getScanner()
-            }
-        }
-
-        private fun scannerIsClosed(): Boolean {
-            try {
-                val sourceClosedField: Field = Scanner::class.java.getDeclaredField("sourceClosed")
-                sourceClosedField.setAccessible(true)
-                return sourceClosedField.getBoolean(scanner)
-            } catch (e: NoSuchFieldException) {
-                println("리플렉션 중 에러 발생")
-            } catch (e: IllegalAccessException) {
-                println("리플렉션 중 에러 발생")
-            }
-            return true
         }
     }
 }

@@ -1,65 +1,62 @@
-package org.keepbang.baseball;
+package org.keepbang.baseball
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import org.assertj.core.api.Assertions
+import org.assertj.core.util.Strings
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.OutputStream
+import java.io.PrintStream
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.NoSuchElementException;
-import org.assertj.core.util.Strings;
+abstract class NSTest {
+    private var standardOut: PrintStream? = null
+    private var captor: OutputStream? = null
 
-public abstract class NSTest {
-  private PrintStream standardOut;
-  private OutputStream captor;
+    fun setUp() {
+        standardOut = System.out
+        captor = ByteArrayOutputStream()
+        System.setOut(PrintStream(captor))
+    }
 
-  protected void setUp() {
-    standardOut = System.out;
-    captor = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(captor));
-  }
+    /**
+     * 사용자의 입력을 기다리는 상황에서 테스트 종료
+     * @param args
+     */
+    protected fun running(vararg args: String) {
+        Assertions.assertThatExceptionOfType(
+            NoSuchElementException::class.java
+        ).isThrownBy { subject(*args) }
+    }
 
-  /**
-   * 사용자의 입력을 기다리는 상황에서 테스트 종료
-   * @param args
-   */
-  protected void running(final String... args) {
-    assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(
-        () -> subject(args)
-    );
-  }
+    /**
+     * 프로그램이 정상적으로 종료
+     * @param args
+     */
+    protected fun run(vararg args: String) {
+        subject(*args)
+    }
 
-  /**
-   * 프로그램이 정상적으로 종료
-   * @param args
-   */
-  protected void run(final String... args) {
-    subject(args);
-  }
+    protected fun verify(vararg args: String) {
+        Assertions.assertThat(output()).contains(*args)
+    }
 
-  protected void verify(final String... args) {
-    assertThat(output()).contains(args);
-  }
+    private fun subject(vararg args: String) {
+        command(*args)
+        runMain()
+    }
 
-  private void subject(final String... args) {
-    command(args);
-    runMain();
-  }
+    abstract fun runMain()
 
-  public abstract void runMain();
+    private fun command(vararg args: String) {
+        val buf = Strings.join(*args).with("\n").toByteArray()
+        System.setIn(ByteArrayInputStream(buf))
+    }
 
-  private void command(final String... args) {
-    final byte[] buf = Strings.join(args).with("\n").getBytes();
-    System.setIn(new ByteArrayInputStream(buf));
-  }
+    protected fun output(): String {
+        return captor.toString().trim { it <= ' ' }
+    }
 
-  protected String output() {
-    return captor.toString().trim();
-  }
-
-  protected void outputStandard() {
-    System.setOut(standardOut);
-    System.out.println(output());
-  }
+    protected fun outputStandard() {
+        System.setOut(standardOut)
+        println(output())
+    }
 }

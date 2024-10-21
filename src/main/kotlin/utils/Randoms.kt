@@ -26,7 +26,7 @@ class Randoms {
             return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1)
         }
 
-        private fun validateRange(startInclusive: Int, endInclusive: Int) {
+        fun validateRange(startInclusive: Int, endInclusive: Int) {
             require(endInclusive != Int.MAX_VALUE) { "끝값이 너무 큽니다. (스택 오버플로우 발생이 가능합니다)" }
 
             require(endInclusive - startInclusive < Int.MAX_VALUE) { "입력값이 너무 큽니다." }

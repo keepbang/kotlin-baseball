@@ -18,6 +18,4 @@ class BallTest : BehaviorSpec({
 
         }
     }
-
-
 })
