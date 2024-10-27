@@ -5,7 +5,7 @@ import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.inspectors.shouldForAll
 import org.keepbang.baseball.domain.MAX_RANGE
-import org.keepbang.org.keepbang.baseball.utils.ValidateUtils.Companion.validation
+import org.keepbang.org.keepbang.baseball.utils.validation
 
 class ValidateUtilsTest: StringSpec({
 

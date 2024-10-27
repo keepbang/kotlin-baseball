@@ -8,7 +8,7 @@ import org.keepbang.baseball.domain.MAX_RANGE
 class RandomGeneratorTest : StringSpec({
 
     "RandomGenerator 생성 성공" {
-        val randomPlayerBall: Ball = RandomGenerator.getRandomPlayerBall()
+        val randomPlayerBall: Ball = getRandomPlayerBall()
         randomPlayerBall.numbers.size shouldBe MAX_RANGE
     }
 

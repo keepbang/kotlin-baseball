@@ -6,7 +6,7 @@ import org.keepbang.org.keepbang.baseball.domain.Inning
 import org.keepbang.org.keepbang.baseball.view.OutputView
 import org.keepbang.org.keepbang.baseball.view.OutputView.Companion.enterNumber
 import org.keepbang.org.keepbang.baseball.view.OutputView.Companion.inningResultOutput
-import org.keepbang.util.Console
+import org.keepbang.util.readLine
 
 class PlayBaseballGame {
 
@@ -39,7 +39,7 @@ class PlayBaseballGame {
 
     private fun enterPlayerNumber(): PlayerBall {
         enterNumber()
-        val input = Console.readLine()
+        val input = readLine()
         return PlayerBall.createPlayerBall(input)
     }
 

@@ -5,16 +5,12 @@ import java.util.*
 /**
  * 콘솔 출력용
  */
-class Console {
 
-    companion object {
-        var scanner: Scanner = getScanner()
-            private set
+private var scanner: Scanner = getScanner()
+    private set
 
-        fun readLine(): String {
-            return scanner.nextLine()
-        }
-    }
+fun readLine(): String {
+    return scanner.nextLine()
 }
 
 private fun getScanner(): Scanner {

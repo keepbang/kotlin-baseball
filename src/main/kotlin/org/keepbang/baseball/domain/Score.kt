@@ -2,23 +2,23 @@ package org.keepbang.org.keepbang.baseball.domain
 
 import org.keepbang.org.keepbang.baseball.type.ScoreType
 
-class Score {
-    var strike: Int
-        private set
-    var ball: Int
-        private set
+data class Score(
+    private var _strike: Int = 0,
+    private var _ball: Int = 0
+) {
 
-    constructor(strike: Int, ball: Int) {
-        this.strike = strike
-        this.ball = ball
-    }
+    val strike: Int
+        get() = this._strike
+
+    val ball: Int
+        get() = this._ball
 
     fun addStrike() {
-        this.strike++
+        this._strike++
     }
 
     fun addBall() {
-        this.ball++
+        this._ball++
     }
 
     fun refereeScore(scoreType: ScoreType) {

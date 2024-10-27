@@ -1,11 +1,11 @@
 package org.keepbang.baseball.controller
 
 import org.keepbang.baseball.type.GameStatus
-import org.keepbang.baseball.utils.RandomGenerator
+import org.keepbang.baseball.utils.getRandomPlayerBall
 import org.keepbang.org.keepbang.baseball.view.OutputView.Companion.gameEndOutput
 import org.keepbang.org.keepbang.baseball.view.OutputView.Companion.gameRetryAnswer
 import org.keepbang.org.keepbang.baseball.view.OutputView.Companion.printError
-import org.keepbang.util.Console
+import org.keepbang.util.readLine
 
 /**
  * 게임 플레이를 위한 컨트롤러
@@ -15,7 +15,7 @@ class BaseballGame {
 
     fun start() {
         while (!gameStatus.isEnd()) { // 종료 상태가 아니면 계속 실행
-            val randomPlayerBall = RandomGenerator.getRandomPlayerBall()
+            val randomPlayerBall = getRandomPlayerBall()
 
             val playBaseballGame = PlayBaseballGame(randomPlayerBall)
             playBaseballGame.play()
@@ -28,7 +28,7 @@ class BaseballGame {
         var status = GameStatus.ERROR
         while(!status.isNotError()) {
             gameRetryAnswer()
-            val input = Console.readLine()
+            val input = readLine()
             status = getGameStatusByAnswer(input)
         }
 
